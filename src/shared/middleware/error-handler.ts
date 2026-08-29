@@ -4,7 +4,7 @@ export function errorHandler(
   err: Error,
   _req: Request,
   res: Response,
-  next: NextFunction,
+  _next: NextFunction,
 ) {
   console.log("Error : ", err);
   let statusCode = 500;
@@ -24,7 +24,7 @@ export function errorHandler(
     err.message.includes("balance")
   ) {
     statusCode = 400;
-  } else if (err.message.includes("already exits")) {
+  } else if (err.message.includes("already exists")) {
     statusCode = 409;
   } else if (err.message.includes("Invalid")) {
     statusCode = 400;

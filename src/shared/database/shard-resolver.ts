@@ -1,4 +1,4 @@
-import { ShardId } from "../types/shared-types";
+import { ShardId } from "../types/shared-types.js";
 
 export class ShardResolver {
   static getShardId(userId: bigint | number): ShardId {
