@@ -23,7 +23,7 @@ model Wallet {
   id        BigInt   @id @default(autoincrement()) @db.BigInt
   user_id   BigInt   @unique @db.BigInt
   balance   BigInt   @default(0) @db.BigInt
-  version   BigInt   @default(0) @db.BigInt
+  version   Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -36,7 +36,7 @@ model Transaction {
   from_user       BigInt            @db.BigInt
   to_user         BigInt            @db.BigInt
   amount          BigInt            @db.BigInt
-  status          TransactionStatus  @default(PENDING)
+  status          TransactionStatus @default(PENDING)
   idempotency_key String            @unique @db.VarChar(255)
   createdAt       DateTime          @default(now())
 

@@ -37,14 +37,14 @@ export type WalletSumAggregateOutputType = {
   id: bigint | null
   user_id: bigint | null
   balance: bigint | null
-  version: bigint | null
+  version: number | null
 }
 
 export type WalletMinAggregateOutputType = {
   id: bigint | null
   user_id: bigint | null
   balance: bigint | null
-  version: bigint | null
+  version: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -53,7 +53,7 @@ export type WalletMaxAggregateOutputType = {
   id: bigint | null
   user_id: bigint | null
   balance: bigint | null
-  version: bigint | null
+  version: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -201,7 +201,7 @@ export type WalletGroupByOutputType = {
   id: bigint
   user_id: bigint
   balance: bigint
-  version: bigint
+  version: number
   createdAt: Date
   updatedAt: Date
   _count: WalletCountAggregateOutputType | null
@@ -233,7 +233,7 @@ export type WalletWhereInput = {
   id?: Prisma.BigIntFilter<"Wallet"> | bigint | number
   user_id?: Prisma.BigIntFilter<"Wallet"> | bigint | number
   balance?: Prisma.BigIntFilter<"Wallet"> | bigint | number
-  version?: Prisma.BigIntFilter<"Wallet"> | bigint | number
+  version?: Prisma.IntFilter<"Wallet"> | number
   createdAt?: Prisma.DateTimeFilter<"Wallet"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Wallet"> | Date | string
 }
@@ -254,7 +254,7 @@ export type WalletWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.WalletWhereInput[]
   NOT?: Prisma.WalletWhereInput | Prisma.WalletWhereInput[]
   balance?: Prisma.BigIntFilter<"Wallet"> | bigint | number
-  version?: Prisma.BigIntFilter<"Wallet"> | bigint | number
+  version?: Prisma.IntFilter<"Wallet"> | number
   createdAt?: Prisma.DateTimeFilter<"Wallet"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Wallet"> | Date | string
 }, "id" | "user_id">
@@ -280,7 +280,7 @@ export type WalletScalarWhereWithAggregatesInput = {
   id?: Prisma.BigIntWithAggregatesFilter<"Wallet"> | bigint | number
   user_id?: Prisma.BigIntWithAggregatesFilter<"Wallet"> | bigint | number
   balance?: Prisma.BigIntWithAggregatesFilter<"Wallet"> | bigint | number
-  version?: Prisma.BigIntWithAggregatesFilter<"Wallet"> | bigint | number
+  version?: Prisma.IntWithAggregatesFilter<"Wallet"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Wallet"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Wallet"> | Date | string
 }
@@ -289,7 +289,7 @@ export type WalletCreateInput = {
   id?: bigint | number
   user_id: bigint | number
   balance?: bigint | number
-  version?: bigint | number
+  version?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -298,7 +298,7 @@ export type WalletUncheckedCreateInput = {
   id?: bigint | number
   user_id: bigint | number
   balance?: bigint | number
-  version?: bigint | number
+  version?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -307,7 +307,7 @@ export type WalletUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   user_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   balance?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  version?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  version?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -316,7 +316,7 @@ export type WalletUncheckedUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   user_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   balance?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  version?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  version?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -325,7 +325,7 @@ export type WalletCreateManyInput = {
   id?: bigint | number
   user_id: bigint | number
   balance?: bigint | number
-  version?: bigint | number
+  version?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -334,7 +334,7 @@ export type WalletUpdateManyMutationInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   user_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   balance?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  version?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  version?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -343,7 +343,7 @@ export type WalletUncheckedUpdateManyInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   user_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   balance?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  version?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  version?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -397,6 +397,14 @@ export type BigIntFieldUpdateOperationsInput = {
   divide?: bigint | number
 }
 
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
@@ -432,7 +440,7 @@ export type $WalletPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     id: bigint
     user_id: bigint
     balance: bigint
-    version: bigint
+    version: number
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["wallet"]>
@@ -807,7 +815,7 @@ export interface WalletFieldRefs {
   readonly id: Prisma.FieldRef<"Wallet", 'BigInt'>
   readonly user_id: Prisma.FieldRef<"Wallet", 'BigInt'>
   readonly balance: Prisma.FieldRef<"Wallet", 'BigInt'>
-  readonly version: Prisma.FieldRef<"Wallet", 'BigInt'>
+  readonly version: Prisma.FieldRef<"Wallet", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Wallet", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Wallet", 'DateTime'>
 }
