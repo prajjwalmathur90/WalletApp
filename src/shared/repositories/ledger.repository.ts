@@ -37,7 +37,9 @@ export class LedgerRepository {
     tx: PrismaClient | Prisma.TransactionClient,
   ): Promise<LedgerEntry[]> {
     const ledgerEntries = await tx.ledger.findMany({
-      where: { id: userId },
+      where: {
+        id: userId,
+      },
       orderBy: {
         createdAt: "desc",
       },
