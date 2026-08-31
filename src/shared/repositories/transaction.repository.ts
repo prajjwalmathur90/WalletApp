@@ -81,6 +81,7 @@ export class TransactionRepository {
     const allTransactions = transactionEntities.map((entity) =>
       this.mapToTransaction(entity),
     );
+
     return allTransactions.sort(
       (a, b) => b.created_at.getTime() - a.created_at.getTime(),
     );

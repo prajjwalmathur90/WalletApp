@@ -7,7 +7,7 @@ export class ConnectionManager {
     return getPrismaClient(shardId);
   }
 
-  async executeTransaction<T>(
+  static async executeTransaction<T>(
     shardId: ShardId,
     fn: (tx: Prisma.TransactionClient) => Promise<T>,
   ): Promise<T> {
