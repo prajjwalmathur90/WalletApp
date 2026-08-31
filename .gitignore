@@ -1,2 +1,6 @@
 .env
 /generated/prisma
+
+# Docker Volumes
+mysql-shard-1-data/
+mysql-shard-2-data/

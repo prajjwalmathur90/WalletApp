@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  mysql-shard-1:
+    build:
+      context: ./docker/mysql
+      dockerfile: Dockerfile
+    container_name: mysql-shard-1
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_SHARD1_PASSWORD:-root_password}
+      MYSQL_DATABASE: ${DB_SHARD1_DATABASE:-wallet_shard1}
+    ports:
+      - "${DB_SHARD1_PORT:-3307}:3306"
+    volumes:
+      - mysql-shard-1-data:/var/lib/mysql
+    networks:
+      - wallet-network
+
+  mysql-shard-2:
+    build:
+      context: ./docker/mysql
+      dockerfile: Dockerfile
+    container_name: mysql-shard-2
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_SHARD2_PASSWORD:-root_password}
+      MYSQL_DATABASE: ${DB_SHARD2_DATABASE:-wallet_shard2}
+    ports:
+      - "${DB_SHARD2_PORT:-3308}:3306"
+    volumes:
+      - mysql-shard-2-data:/var/lib/mysql
+    networks:
+      - wallet-network
+
+volumes:
+  mysql-shard-1-data:
+  mysql-shard-2-data:
+
+networks:
+  wallet-network:
+    driver: bridge

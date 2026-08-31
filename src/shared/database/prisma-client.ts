@@ -20,7 +20,7 @@ function getShard1AdapterOptions() {
         connectionLimit: 5,
       };
     } catch (error) {
-      throw new Error(`Invalid DATABASE_URL_SHARD_1 : ${url}`);
+      throw new Error(`Invalid DATABASE_SHARD1_URL : ${url}`);
     }
   }
 
@@ -48,7 +48,7 @@ function getShard2AdapterOptions() {
         connectionLimit: 5,
       };
     } catch (error) {
-      throw new Error(`Invalid DATABASE_URL_SHARD_2 : ${url}`);
+      throw new Error(`Invalid DATABASE_SHARD2_URL : ${url}`);
     }
   }
 
@@ -57,7 +57,7 @@ function getShard2AdapterOptions() {
     port: parseInt(process.env.DB_SHARD2_PORT || "3306", 10),
     username: process.env.DB_SHARD2_USERNAME || "root",
     password: process.env.DB_SHARD2_PASSWORD || "",
-    database: process.env.DB_SHARD2_DATABASE || "wallet_shard1",
+    database: process.env.DB_SHARD2_DATABASE || "wallet_shard2",
     connectionLimit: 5,
   };
 }

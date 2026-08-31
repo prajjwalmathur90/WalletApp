@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch src/index.ts",
     "prisma:format": "npx prisma format",
-    "prisma:migrate": "npx prisma migrate dev",
+    "prisma:migrate": "tsx scripts/migrate.ts",
     "prisma:generate": "npx prisma generate",
     "prisma:all": "npm run prisma:format && npm run prisma:migrate && npm run prisma:generate",
     "prisma:studio": "npx prisma studio",
