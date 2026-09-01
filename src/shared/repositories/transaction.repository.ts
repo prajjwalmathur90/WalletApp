@@ -8,7 +8,7 @@ export class TransactionRepository {
     amount: bigint,
     idempotencyKey: string,
     tx: PrismaClient | Prisma.TransactionClient,
-  ): Promise<Transaction | null> {
+  ): Promise<Transaction> {
     const transactionEntity = await tx.transaction.create({
       data: {
         from_user: fromUser,
