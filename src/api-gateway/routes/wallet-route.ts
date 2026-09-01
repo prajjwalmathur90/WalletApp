@@ -4,14 +4,14 @@ import { WalletController } from "../../wallet-service/wallet.controller.js";
 const walletRouter = Router();
 const walletController = new WalletController();
 
-walletRouter.post("/", (_req: Request, _res: Response) =>
-  walletController.createWallet.bind(walletController),
+walletRouter.post("/", (req: Request, res: Response) =>
+  walletController.createWallet(req, res),
 );
-walletRouter.get("/:userId", (_req: Request, _res: Response) =>
-  walletController.getWallet.bind(walletController),
+walletRouter.get("/:userId", (req: Request, res: Response) =>
+  walletController.getWallet(req, res),
 );
-walletRouter.post("/:userId/add-money", (_req: Request, _res: Response) =>
-  walletController.addMoney.bind(walletController),
+walletRouter.post("/:userId/add-money", (req: Request, res: Response) =>
+  walletController.addMoney(req, res),
 );
 
 export default walletRouter;

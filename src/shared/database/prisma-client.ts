@@ -14,7 +14,7 @@ function getShard1AdapterOptions() {
       return {
         host: u.hostname,
         port: parseInt(u.port || "3306", 10),
-        username: u.username,
+        user: u.username,
         password: u.password,
         database: u.pathname.replace(/^\//, "") || "wallet",
         connectionLimit: 5,
@@ -27,7 +27,7 @@ function getShard1AdapterOptions() {
   return {
     host: process.env.DB_SHARD1_HOST || "localhost",
     port: parseInt(process.env.DB_SHARD1_PORT || "3306", 10),
-    username: process.env.DB_SHARD1_USERNAME || "root",
+    user: process.env.DB_SHARD1_USERNAME || "root",
     password: process.env.DB_SHARD1_PASSWORD || "",
     database: process.env.DB_SHARD1_DATABASE || "wallet_shard1",
     connectionLimit: 5,
@@ -42,7 +42,7 @@ function getShard2AdapterOptions() {
       return {
         host: u.hostname,
         port: parseInt(u.port || "3306", 10),
-        username: u.username,
+        user: u.username,
         password: u.password,
         database: u.pathname.replace(/^\//, "") || "wallet",
         connectionLimit: 5,
@@ -55,7 +55,7 @@ function getShard2AdapterOptions() {
   return {
     host: process.env.DB_SHARD2_HOST || "localhost",
     port: parseInt(process.env.DB_SHARD2_PORT || "3306", 10),
-    username: process.env.DB_SHARD2_USERNAME || "root",
+    user: process.env.DB_SHARD2_USERNAME || "root",
     password: process.env.DB_SHARD2_PASSWORD || "",
     database: process.env.DB_SHARD2_DATABASE || "wallet_shard2",
     connectionLimit: 5,
