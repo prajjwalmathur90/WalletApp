@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { WalletService } from "./wallet.services.js";
+import { WalletService } from "./wallet-services.js";
 import {
   AddMoneyDTO,
   CreateWalletDTO,

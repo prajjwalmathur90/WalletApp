@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { WalletController } from "../../wallet-service/wallet.controller.js";
+import { WalletController } from "../../wallet-service/wallet-controller.js";
 import { idempotencyMiddleware } from "../../shared/middleware/idempotency-middleware.js";
 
 const walletRouter = Router();

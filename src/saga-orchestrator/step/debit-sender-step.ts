@@ -1,5 +1,5 @@
 import { ConnectionManager } from "../../shared/database/connection-manager.js";
-import { WalletService } from "../../wallet-service/wallet.services.js";
+import { WalletService } from "../../wallet-service/wallet-services.js";
 import { SagaContext } from "../types/saga-context.js";
 import { SagaStep } from "../types/saga-step.js";
 
