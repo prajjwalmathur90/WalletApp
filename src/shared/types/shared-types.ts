@@ -29,7 +29,7 @@ export interface LedgerEntry {
 export enum TransactionStatus {
   PENDING = "PENDING",
   DEBITED = "DEBITED",
-  CREATED = "CREATED",
+  CREDITED = "CREDITED",
   FAILED = "FAILED",
 }
 
