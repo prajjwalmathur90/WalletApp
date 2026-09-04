@@ -75,20 +75,22 @@ export class SagaOrchestrator {
             throw new Error("Transaction previously failed");
           }
 
-          if (status === TransactionStatus.PENDING) {
-            throw new Error("Transaction is Pending");
-          }
-
+          // If it's already DEBITED, skip DebitSenderStep (i=1) and UpdateStatusDebitStep (i=2)
           if (status === TransactionStatus.DEBITED && i < 3) {
             continue;
           }
-
-          const updatedContext = await step.execute(context);
-          Object.assign(context, updatedContext);
-
-          completedSteps.push(step);
         }
+
+        const updatedContext = await step.execute(context);
+        Object.assign(context, updatedContext);
+
+        completedSteps.push(step);
+
+        // After step 0, if the transaction was already PENDING from a previous run,
+        // you might want to prevent concurrent execution. But for now, we just proceed.
       }
+
+      return context.transaction;
     } catch (err) {
       await this.compensate(completedSteps, context);
 

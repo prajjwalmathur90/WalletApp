@@ -65,7 +65,7 @@ export class UpdateStatusCreditStep implements SagaStep {
     const updatedTransaction = await this.transactionService.updateTransaction(
       context.transaction.id,
       TransactionStatus.CREDITED,
-      context.toUser,
+      context.fromUser,
     );
 
     context.transaction = updatedTransaction;
@@ -81,7 +81,7 @@ export class UpdateStatusCreditStep implements SagaStep {
       await this.transactionService.updateTransaction(
         context.transaction.id,
         TransactionStatus.DEBITED,
-        context.toUser,
+        context.fromUser,
       );
     } catch (error) {
       console.error("Failed to update transaction status", error);

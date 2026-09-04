@@ -20,10 +20,10 @@ export class CreditReceiverStep implements SagaStep {
     }
 
     await ConnectionManager.executeTransaction(
-      context.fromShardId,
+      context.toShardId,
       async (tx) => {
         await this.walletService.credit(
-          context.fromUser,
+          context.toUser,
           context.amount,
           context.transaction!.id,
           tx,
@@ -42,7 +42,7 @@ export class CreditReceiverStep implements SagaStep {
 
     if (context.creditCommited) {
       await ConnectionManager.executeTransaction(
-        context.fromShardId,
+        context.toShardId,
         async (tx) => {
           const debitWallet = await this.walletService.debit(
             context.toUser,
